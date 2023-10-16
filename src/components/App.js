@@ -9,7 +9,7 @@ class App extends React.Component{
   componentDidMount(){
     const {store} = this.props;
     store.subscribe(()=>{
-      console.log("UPDATED");
+      // console.log("UPDATED");
       this.forceUpdate();
     });
 

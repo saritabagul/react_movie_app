@@ -14,7 +14,7 @@ console.log('state',store.getState());
 //   movies:[{name:'Superman'}]
 // });
 
-console.log('after state:',store.getState());
+// console.log('after state:',store.getState());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -22,8 +22,9 @@ class App extends React.Component{
     // });
 
     store.dispatch(addMovies(data));
+    
 
-     console.log('STATE',this.props.store.getState()); 
+    //  console.log('STATE',this.props.store.getState()); 
 
   }
   

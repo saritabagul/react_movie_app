@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
+import { searchData } from '../actions';
 
-class Navbar extends React.Component{
-    render(){
-        return(<div className="nav">
+const Navbar = (props) =>{
+
+    const [query, setQuery] = useState('');
+
+  const handleSearch = () => {
+    props.dispatch(searchData(query));
+  };
+
+  const movies = props.movies;
+
+//   console.log("filter movie", movies);
+
+    return(
+        <div className="nav">
             <div className="search-container">
-                <input />
-                <button id="search-btn">Search</button>
+                <input onChange={(e)=> setQuery(e.target.value)} onKeyUp={handleSearch}/>
+                <button id="search-btn" onClick={handleSearch}>Search</button>
             </div>
-        </div>)
-    };
-}
+        </div>
+    );
+};
+
 
 export default Navbar;

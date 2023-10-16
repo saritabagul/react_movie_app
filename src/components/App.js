@@ -43,15 +43,29 @@ class App extends React.Component{
   this.props.store.dispatch(setShowFavourite(val));
  }
 
+
   render() {
     // const movies = props.store.getState();
     // const movies = this.props.store.getState();
    
-    const {list,favourites,showFavourites} = this.props.store.getState(); //{list:[],movies:[]}
-    const displayMovies = showFavourites ? favourites : list;
+    const {list,favourites,showFavourites,filterData} = this.props.store.getState(); //{list:[],movies:[]}
+   
+   console.log(filterData);
+    let displayMovies;
+    if(filterData.length === 0){
+      displayMovies = showFavourites ? favourites : list;
+    }else{
+      //search bar
+      displayMovies = showFavourites ? favourites : filterData; 
+    }
+    
+
+   
+
+    console.log("filteredData",this.props.store.getState());
     return(
     <div className="App">
-      <Navbar />
+      <Navbar  movies={displayMovies} dispatch={this.props.store.dispatch } />
       <div className="main">
         <div className="tabs">
           <div className={`tab ${showFavourites ? '':'active-tabs'}`} onClick={()=>this.onChangeTab(false)}>Movies</div>

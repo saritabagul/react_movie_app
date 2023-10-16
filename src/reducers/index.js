@@ -1,7 +1,8 @@
-import {ADD_MOVIES,ADD_FAVOURITES, REMOVE_FAVOURITES,SET_SHOW_FAVOURITE} from '../actions';
+import {ADD_MOVIES,ADD_FAVOURITES, REMOVE_FAVOURITES,SET_SHOW_FAVOURITE,SEARCH_DATA} from '../actions';
 const initialMoviesState = {
     list:[],
-    favourites:[]
+    favourites:[],
+    filterData:[]
 };
 
 export default function movies(state=initialMoviesState, action){  
@@ -37,7 +38,16 @@ export default function movies(state=initialMoviesState, action){
             return{
                 ...state,
                 showFavourites:action.val
-            }       
+            }   
+            case SEARCH_DATA:
+                // Implement your search logic here
+                const filteredData = state.list.filter(movie =>
+                    movie.Title.toLowerCase().includes(action.query.toLowerCase())
+                );
+                return {
+                  ...state,
+                  filterData: filteredData,
+                };       
         default:
                return state; 
     }

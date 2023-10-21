@@ -6,14 +6,21 @@ import App from './components/App';
 // import movies from './reducers';
 import rootReducer from './reducers';
 
-const logger = function({dispatch,getState}){
-  return function(next){
-    return function (action){
-      //middleware code
+// const logger = function({dispatch,getState}){
+//   return function(next){
+//     return function (action){
+//       //middleware code
+//       console.log('ACTION_TYPE= ',action.type);
+//       next(action);
+//     }
+//   }
+// }
+
+//cleaner modified middleware
+const logger = ({dispatch,getState}) => (next) => (action) =>{
+      //logger code
       console.log('ACTION_TYPE= ',action.type);
       next(action);
-    }
-  }
 }
 
 const store = createStore(rootReducer,applyMiddleware(logger));

@@ -5,7 +5,8 @@ const initialMoviesState = {
     filterData:[]
 };
 
-export default function movies(state=initialMoviesState, action){  
+export function movies(state=initialMoviesState, action){  
+    console.log("Movie reducer");
     // if(action.type === ADD_MOVIES){
     //     // return action.movies;
     //     return{
@@ -52,3 +53,26 @@ export default function movies(state=initialMoviesState, action){
                return state; 
     }
 }
+
+
+const initialSearchState = {
+    result:{}
+};
+
+export function search(state=initialSearchState,action){
+    console.log("Search reducer");
+    return state;
+} 
+
+const initialRootReducer = {
+    movies:initialMoviesState,
+    search:initialSearchState
+};
+
+
+export default function rootReducer(state=initialRootReducer,action){
+    return {
+        movies:movies(state.movies,action),
+        search:search(state.search,action),
+    }    
+};

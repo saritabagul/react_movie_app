@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 import {ADD_MOVIES,ADD_FAVOURITES, REMOVE_FAVOURITES,SET_SHOW_FAVOURITE,SEARCH_DATA} from '../actions';
 const initialMoviesState = {
     list:[],
@@ -64,15 +65,23 @@ export function search(state=initialSearchState,action){
     return state;
 } 
 
-const initialRootReducer = {
-    movies:initialMoviesState,
-    search:initialSearchState
-};
+// const initialRootReducer = {
+//     movies:initialMoviesState,
+//     search:initialSearchState
+// };
 
 
-export default function rootReducer(state=initialRootReducer,action){
-    return {
-        movies:movies(state.movies,action),
-        search:search(state.search,action),
-    }    
-};
+// export default function rootReducer(state=initialRootReducer,action){
+//     return {
+//         movies:movies(state.movies,action),
+//         search:search(state.search,action),
+//     }    
+// };
+
+//We don't have to create rootReducer bcz redux gives us an inbuilt function combineReducers()
+
+export default combineReducers({
+    movies,  //or movies:movies  //we use shorthand property bcz function name is same as variable name
+    search  //or search:search
+});
+

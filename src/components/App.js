@@ -48,22 +48,13 @@ class App extends React.Component{
     // const movies = props.store.getState();
     // const movies = this.props.store.getState();
    const {movies} = this.props.store.getState();   //{movies:[],search:[]}
-   // const {list,favourites,showFavourites,filterData} = this.props.store.getState(); //{list:[],movies:[]}
-    const {list,favourites,showFavourites,filterData} = movies; //{list:[],movies:[]}
+   // const {list,favourites,showFavourites} = this.props.store.getState(); //{list:[],movies:[]}
+    const {list,favourites,showFavourites} = movies; //{list:[],movies:[]}
    
-   console.log(filterData);
-    let displayMovies;
-    if(filterData.length === 0){
-      displayMovies = showFavourites ? favourites : list;
-    }else{
-      //search bar
-      displayMovies = showFavourites ? favourites : filterData; 
-    }
+ 
     
-
-   
-
-    console.log("filteredData",this.props.store.getState());
+      const displayMovies = showFavourites ? favourites : list;
+    
     return(
     <div className="App">
       <Navbar  movies={displayMovies} dispatch={this.props.store.dispatch } />

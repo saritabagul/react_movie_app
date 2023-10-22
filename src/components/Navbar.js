@@ -1,26 +1,34 @@
 import React, { useState } from "react";
-import { searchData } from '../actions';
+import {addMovieToList,handleMovieSearch} from '../actions'
+class Navbar extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={
+            showSearchResults:true,
+            searchText:''
+        }
+    }
 
-const Navbar = (props) =>{
+    handleSearch = () =>{
+        const {searchText} = this.state;
+        this.props.dispatch(handleMovieSearch(searchText));
+    }
 
-    const [query, setQuery] = useState('');
-
-  const handleSearch = () => {
-    props.dispatch(searchData(query));
-  };
-
-  const movies = props.movies;
-
-//   console.log("filter movie", movies);
-
-    return(
-        <div className="nav">
-            <div className="search-container">
-                <input onChange={(e)=> setQuery(e.target.value)} onKeyUp={handleSearch}/>
-                <button id="search-btn" onClick={handleSearch}>Search</button>
+    handleChange = (e) =>{
+        this.setState({
+            searchText:e.target.value
+        });
+    }
+    render(){
+        return(
+            <div className="nav">
+                <div className="search-container">
+                    <input onChange={this.handleChange}/>
+                    <button id="search-btn" onClick={this.handleSearch}>Search</button>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 };
 
 
